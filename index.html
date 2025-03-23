@@ -1,36 +1,78 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-	<meta charset="UTF-8">  
-	<style>
-		model-viewer {
-		width: 100%; 
-		height: 100%;
-		position: absolute; /* Posiciona el model-viewer para ocupar toda la página */
-		top: 0;
-		left: 0;
-	}
-	</style>
-	   
-	<title>Modelo 3D_Piso 8 UAM-C</title>
-	</head>
-<body>
-    <!-- Insercción del modelo 3D (Codígo extraido del editor de https://modelviewer.dev/) -->
+    <meta charset="UTF-8">  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modelo 3D - Piso 8 UAM-C</title>
 
-    <model-viewer src="assets/Piso8.glb" ar ar-modes="webxr scene-viewer quick-look" camera-controls tone-mapping="neutral" poster="poster.webp" shadow-intensity="1">
-        <div class="progress-bar hide" slot="progress-bar">
-            <div class="update-bar"></div>
-        </div>
-        <button slot="ar-button" id="ar-button">
-            <font style="vertical-align: inherit;">
-				<font style="vertical-align: inherit;">
-					Ver en tu espacio
-				</font>
-			</font>
+    <style>
+        model-viewer {
+            width: 100%;
+            height: 100%;
+            position: absolute; /* Hace que el modelo ocupe toda la pantalla */
+            top: 0;
+            left: 0;
+        }
+        .hotspot {
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 5px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+        .hotspot:hover {
+            background: rgba(255, 255, 255, 0.8);
+            color: black;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 🔹 Modelo 3D con Hotspots -->
+    <model-viewer 
+        src="assets/Piso8.glb" 
+        ar ar-modes="webxr scene-viewer quick-look" 
+        camera-controls 
+        tone-mapping="neutral" 
+        poster="poster.webp" 
+        shadow-intensity="1">
+        
+        <!-- 🔵 Hotspot 1: Laboratorio -->
+        <button class="hotspot" slot="hotspot-1" 
+            data-position="2m 1.5m -3m" 
+            data-normal="0m 1m 0m"
+            onclick="window.location.href='https://example.com/laboratorio';">
+            Laboratorio
         </button>
+
+        <!-- 🔴 Hotspot 2: Sala de reuniones -->
+        <button class="hotspot" slot="hotspot-2" 
+            data-position="-1m 2m 1m" 
+            data-normal="0m 1m 0m"
+            onclick="window.location.href='https://example.com/sala-reuniones';">
+            Sala de reuniones
+        </button>
+
+        <!-- 🟢 Hotspot 3: Oficinas -->
+        <button class="hotspot" slot="hotspot-3" 
+            data-position="3m 1m 0m" 
+            data-normal="0m 1m 0m"
+            onclick="window.location.href='https://example.com/oficinas';">
+            Oficinas
+        </button>
+
+        <!-- 🔸 Botón para ver en realidad aumentada -->
+        <button slot="ar-button" id="ar-button">
+            Ver en mi espacio
+        </button>
+
     </model-viewer>
 
-   <!-- Importación del componente -->
-<script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js"></script>
+    <!-- 📌 Importación del visor 3D -->
+    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js"></script>
+
 </body>
 </html>
+
