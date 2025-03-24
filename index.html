@@ -20,7 +20,6 @@
 
     <h2>Explora el Piso 8 de la UAM-C</h2>
 
-    <!-- 🔹 Modelo 3D -->
     <model-viewer 
         id="modelo3D"
         src="assets/Piso8.glb" 
@@ -32,7 +31,7 @@
         shadow-intensity="1">
     </model-viewer>
 
-    <!-- 📌 Script para mover la cámara -->
+
     <script>
         function irA(posicion, angulo) {
             let modelo = document.getElementById('modelo3D');
@@ -40,24 +39,24 @@
             modelo.setAttribute("camera-orbit", angulo);     // Ángulo de la vista
         }
 
-        // 📌 Detectar parámetros en la URL
         const params = new URLSearchParams(window.location.search);
         const view = params.get("view");
 
-        // 📌 Definir vistas preconfiguradas
+      
         const vistas = {
-            laboratorios: { pos: "13.49m 57.3m 113.8m", ang: "-5deg 20deg 0.1m" },
-            aulas: { pos: "-1m 2m 1m", ang: "0deg 90deg 2m" },
-            oficinas: { pos: "3m 1m 0m", ang: "30deg 60deg 2.5m" }
+            cubiculos: {pos: "7.71m 0.34m -253m", ang: "-2.97deg 20.30deg 0.3m"},
+            consejoAcademico: {pos: "-229m 58m 199.3m", ang: "-5.94deg 30.05deg 0.3m"},
+            UAMradio: {pos: "-232m 51.5m -256m", ang: "-3.82deg 6.30deg 0.3m"},
+            aulas: { pos: "-233m 57.1m 53.1m", ang: "-3.82deg 22.42deg 0.3m" },
+            laboratorios: { pos: "243.2m 57.1m 55.3m", ang: "-3.39deg 0.85deg 0.3m" },
+            secretariaRectoria: { pos: "16.19m 51.50m 26.29m", ang: "-3.39deg 60.64deg 0.3m" }
         };
 
-        // 📌 Si el parámetro "view" existe, mover la cámara
         if (view && vistas[view]) {
             irA(vistas[view].pos, vistas[view].ang);
         }
     </script>
 
-    <!-- 📌 Importación del visor 3D -->
     <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js"></script>
 
 </body>
