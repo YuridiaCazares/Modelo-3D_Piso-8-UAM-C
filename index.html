@@ -14,21 +14,6 @@
             width: 100%;
             height: 80vh;
         }
-        .controls {
-            margin-top: 10px;
-        }
-        .btn {
-            background: #007bff;
-            color: white;
-            border: none;
-            padding: 10px 15px;
-            margin: 5px;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        .btn:hover {
-            background: #0056b3;
-        }
     </style>
 </head>
 <body>
@@ -47,19 +32,28 @@
         shadow-intensity="1">
     </model-viewer>
 
-    <!-- 🔹 Botones de navegación -->
-    <div class="controls">
-        <button class="btn" onclick="irA('13.49m 57.3m 113.8m', '-0.5deg 20.30deg 0.1m')">Ir al Laboratorio</button>
-        <button class="btn" onclick="irA('-1m 2m 1m', '30deg 10deg 2.5m')">Ir a la Sala de Reuniones</button>
-        <button class="btn" onclick="irA('3m 1m 0m', '60deg 15deg 3m')">Ir a las Oficinas</button>
-    </div>
-
     <!-- 📌 Script para mover la cámara -->
     <script>
         function irA(posicion, angulo) {
             let modelo = document.getElementById('modelo3D');
-            modelo.setAttribute("camera-target", posicion);  // Posiciona la cámara
-            modelo.setAttribute("camera-orbit", angulo);     // Ajusta la vista
+            modelo.setAttribute("camera-target", posicion);  // Posición de la cámara
+            modelo.setAttribute("camera-orbit", angulo);     // Ángulo de la vista
+        }
+
+        // 📌 Detectar parámetros en la URL
+        const params = new URLSearchParams(window.location.search);
+        const view = params.get("view");
+
+        // 📌 Definir vistas preconfiguradas
+        const vistas = {
+            laboratorios: { pos: "13.49m 57.3m 113.8m", ang: "45deg 75deg 3m" },
+            aulas: { pos: "-1m 2m 1m", ang: "0deg 90deg 2m" },
+            oficinas: { pos: "3m 1m 0m", ang: "30deg 60deg 2.5m" }
+        };
+
+        // 📌 Si el parámetro "view" existe, mover la cámara
+        if (view && vistas[view]) {
+            irA(vistas[view].pos, vistas[view].ang);
         }
     </script>
 
@@ -68,6 +62,5 @@
 
 </body>
 </html>
-
 
 
