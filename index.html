@@ -49,17 +49,17 @@
 
     <!-- 🔹 Botones de navegación -->
     <div class="controls">
-        <button class="btn" onclick="irA('13.49m 57.3m 113.8m')">Ir al Laboratorio</button>
-        <button class="btn" onclick="irA('-1m 2m 1m')">Ir a la Sala de Reuniones</button>
-        <button class="btn" onclick="irA('3m 1m 0m')">Ir a las Oficinas</button>
+        <button class="btn" onclick="irA('13.49m 57.3m 113.8m', '-0.5deg 20.30deg 1m')">Ir al Laboratorio</button>
+        <button class="btn" onclick="irA('-1m 2m 1m', '30deg 10deg 2.5m')">Ir a la Sala de Reuniones</button>
+        <button class="btn" onclick="irA('3m 1m 0m', '60deg 15deg 3m')">Ir a las Oficinas</button>
     </div>
 
     <!-- 📌 Script para mover la cámara -->
     <script>
-        function irA(posicion) {
+        function irA(posicion, angulo) {
             let modelo = document.getElementById('modelo3D');
-            modelo.cameraTarget = posicion;
-            modelo.cameraOrbit = "-0.5deg 20.30deg 0m"; // Ajusta la vista
+            modelo.setAttribute("camera-target", posicion);  // Posiciona la cámara
+            modelo.setAttribute("camera-orbit", angulo);     // Ajusta la vista
         }
     </script>
 
@@ -68,5 +68,6 @@
 
 </body>
 </html>
+
 
 
